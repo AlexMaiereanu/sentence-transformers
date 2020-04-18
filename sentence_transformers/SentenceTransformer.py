@@ -13,12 +13,13 @@ from numpy import ndarray
 from torch import nn, Tensor
 from torch.optim import Optimizer
 from torch.utils.data import DataLoader
-from tqdm import tqdm, trange
+from tqdm.notebook import tqdm, trange
 
 from . import __DOWNLOAD_SERVER__
 from .evaluation import SentenceEvaluator
 from .util import import_from_string, batch_to_device, http_get
 from . import __version__
+
 
 class SentenceTransformer(nn.Sequential):
     def __init__(self, model_name_or_path: str = None, modules: Iterable[nn.Module] = None, device: str = None):
@@ -245,7 +246,6 @@ class SentenceTransformer(nn.Sequential):
                         feature_lists[feature_name] = []
 
                     feature_lists[feature_name].append(sentence_features[feature_name])
-
 
             for feature_name in feature_lists:
                 #feature_lists[feature_name] = torch.tensor(np.asarray(feature_lists[feature_name]))
